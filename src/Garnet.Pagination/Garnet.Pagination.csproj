@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>10.0</LangVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    
+    <PackageId>Garnet.Pagination</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>Garnet</Authors>
+    <Company>Garnet</Company>
+    <PackageProjectUrl>https://github.com/Abbas-b-b/Garnet.Pagination</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Abbas-b-b/Garnet.Pagination.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Title>Garnet.Pagination</Title>
+    <Description>An implementation of standard pagination</Description>
+    <PackageTags>dotnet;.net;pagination;page</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <Copyright>Copyright © Garnet</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Garnet.Standard.Pagination\Garnet.Standard.Pagination.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>

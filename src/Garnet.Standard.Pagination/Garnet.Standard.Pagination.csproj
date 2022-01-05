@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <LangVersion>10.0</LangVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    
+    <PackageId>Garnet.Standard.Pagination</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>Garnet</Authors>
+    <Company>Garnet</Company>
+    <PackageProjectUrl>https://github.com/Abbas-b-b/Garnet.Pagination</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Abbas-b-b/Garnet.Pagination.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Title>Garnet.Standard.Pagination</Title>
+    <Description>Standard libraries is the abastraction layer without implementation details to keep the solution application or domain layer clean.</Description>
+    <PackageTags>dotnet;.net;pagination;page</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <Copyright>Copyright © Garnet</Copyright>
+  </PropertyGroup>
+
+</Project>
