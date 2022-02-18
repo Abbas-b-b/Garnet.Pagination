@@ -6,12 +6,16 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     
     <PackageId>Garnet.Detail.Pagination.ListExtensions</PackageId>
-    <Version>0.0.1</Version>
+    <Version>0.1.0</Version>
     <Authors>Garnet</Authors>
     <Company>Garnet</Company>
     <PackageProjectUrl>https://github.com/Abbas-b-b/Garnet.Pagination</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Abbas-b-b/Garnet.Pagination.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Title>Garnet.Detail.Pagination.ListExtensions</Title>
     <Description>Provides some extension methods to apply on list or IQueryable</Description>
     <PackageTags>dotnet;.net;pagination;page</PackageTags>
@@ -22,8 +26,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Garnet.Pagination\Garnet.Pagination.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.9" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
   </ItemGroup>
 
 </Project>
