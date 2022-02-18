@@ -28,12 +28,15 @@ internal class LikesComparisionOperator : Operator
         var secondOperandValue = operands.Item2.Replace(
             ConfigProvider.PaginationFilterConfig.ZeroOrMoreCharactersWildCardSign, "");
 
-        var wildCardCount = Regex.Match(operands.Item2,
-            ConfigProvider.PaginationFilterConfig.ZeroOrMoreCharactersWildCardSign).Length;
-
-        var wildCardFirstIndex = operands.Item2.IndexOf(
+        var startsWithWildCard = operands.Item2.StartsWith(
             ConfigProvider.PaginationFilterConfig.ZeroOrMoreCharactersWildCardSign,
             StringComparison.Ordinal);
+
+        var endsWithWildCard = operands.Item2.StartsWith(
+            ConfigProvider.PaginationFilterConfig.ZeroOrMoreCharactersWildCardSign,
+            StringComparison.Ordinal);
+
+        var wildCardCount = (startsWithWildCard ? 1 : 0) + (endsWithWildCard ? 1 : 0);
 
         var dynamicFilter = wildCardCount switch
         {
@@ -41,7 +44,7 @@ internal class LikesComparisionOperator : Operator
 
             2 => $"{operands.Item1}.Contains(@0)",
 
-            1 => $"{operands.Item1}.{(wildCardFirstIndex == 0 ? "Ends" : "Starts")}With(@0)",
+            1 => $"{operands.Item1}.{(startsWithWildCard ? "Starts" : "Ends")}With(@0)",
 
             _ => throw new InvalidUsageOfWildCard(expression,
                 ConfigProvider.PaginationFilterConfig.ZeroOrMoreCharactersWildCardSign)
