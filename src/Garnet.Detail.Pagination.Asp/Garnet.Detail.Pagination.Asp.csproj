@@ -6,7 +6,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     
     <PackageId>Garnet.Detail.Pagination.Asp</PackageId>
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <Authors>Garnet</Authors>
     <Company>Garnet</Company>
     <PackageProjectUrl>https://github.com/Abbas-b-b/Garnet.Pagination</PackageProjectUrl>
@@ -16,6 +16,7 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Deterministic>true</Deterministic>
     <Title>Garnet.Detail.Pagination.ListExtensions</Title>
     <Description>Enable using pagination as action parameter and response</Description>
     <PackageTags>dotnet;.net;pagination;page</PackageTags>
