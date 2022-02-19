@@ -83,17 +83,28 @@ internal abstract class Operator : IOperator
     /// Get actual object from the value literal
     /// </summary>
     /// <param name="value">The value literal to extract actual object</param>
+    /// <param name="fieldType">The known type of operand</param>
     /// <returns>Extracted object</returns>
-    protected static object GetParameterObject(string value)
+    protected static object GetParameterObject(string value, Type fieldType)
     {
         if (string.Compare("null", value, StringComparison.OrdinalIgnoreCase) == 0)
         {
             return null;
         }
 
-        if (DateTime.TryParse(value, out var resultDatetime))
+        if (fieldType.IsEquivalentTo(typeof(DateTime)) && DateTime.TryParse(value, out var resultDateTime))
         {
-            return resultDatetime;
+            return resultDateTime;
+        }
+        
+        if (fieldType.IsEquivalentTo(typeof(TimeSpan)) && TimeSpan.TryParse(value, out var resultTimeSpan))
+        {
+            return resultTimeSpan;
+        }
+        
+        if (fieldType.IsEquivalentTo(typeof(Guid)) && Guid.TryParse(value, out var resultGuid))
+        {
+            return resultGuid;
         }
 
         return value;

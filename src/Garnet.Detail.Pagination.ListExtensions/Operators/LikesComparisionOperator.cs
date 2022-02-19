@@ -49,6 +49,6 @@ internal class LikesComparisionOperator : Operator
                 ConfigProvider.PaginationFilterConfig.ZeroOrMoreCharactersWildCardSign)
         };
 
-        return queryable.Where(dynamicFilter, GetParameterObject(secondOperandValue));
+        return queryable.Where(dynamicFilter, GetParameterObject(secondOperandValue, operands.Item1.GetType()));
     }
 }

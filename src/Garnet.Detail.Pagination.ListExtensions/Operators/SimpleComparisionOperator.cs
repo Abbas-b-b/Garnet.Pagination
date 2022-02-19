@@ -39,7 +39,7 @@ internal class SimpleComparisionOperator : Operator
         var dynamicQueryOperatorSign = GetDynamicQueryOperatorSign();
 
         return queryable.Where($"{operands.Item1} {dynamicQueryOperatorSign} @0",
-            GetParameterObject(operands.Item2));
+            GetParameterObject(operands.Item2, operands.Item1.GetType()));
     }
 
     private string GetDynamicQueryOperatorSign()

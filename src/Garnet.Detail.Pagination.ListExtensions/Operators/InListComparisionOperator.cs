@@ -26,7 +26,7 @@ internal class InListComparisionOperator : Operator
         var items = operands.Item2
             .Split(new[] { ConfigProvider.PaginationFilterConfig.InListSeparatorSign },
                 StringSplitOptions.RemoveEmptyEntries)
-            .Select(parameter => GetParameterObject(parameter.Trim()));
+            .Select(parameter => GetParameterObject(parameter.Trim(), operands.Item1.GetType()));
 
         return queryable.Where($"@0.Contains({operands.Item1})", items.ToList());
     }
