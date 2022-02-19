@@ -32,7 +32,7 @@ internal class LikesComparisionOperator : Operator
             ConfigProvider.PaginationFilterConfig.ZeroOrMoreCharactersWildCardSign,
             StringComparison.Ordinal);
 
-        var endsWithWildCard = operands.Item2.StartsWith(
+        var endsWithWildCard = operands.Item2.EndsWith(
             ConfigProvider.PaginationFilterConfig.ZeroOrMoreCharactersWildCardSign,
             StringComparison.Ordinal);
 
@@ -44,7 +44,7 @@ internal class LikesComparisionOperator : Operator
 
             2 => $"{operands.Item1}.Contains(@0)",
 
-            1 => $"{operands.Item1}.{(startsWithWildCard ? "Starts" : "Ends")}With(@0)",
+            1 => $"{operands.Item1}.{(startsWithWildCard ? "Ends" : "Starts")}With(@0)",
 
             _ => throw new InvalidUsageOfWildCard(expression,
                 ConfigProvider.PaginationFilterConfig.ZeroOrMoreCharactersWildCardSign)
