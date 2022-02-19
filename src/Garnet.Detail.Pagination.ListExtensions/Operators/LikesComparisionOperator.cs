@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Linq.Dynamic.Core;
-using System.Text.RegularExpressions;
 using Garnet.Detail.Pagination.ListExtensions.Exceptions;
 using Garnet.Detail.Pagination.ListExtensions.Infrastructure;
 
