@@ -6,7 +6,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     
     <PackageId>Garnet.Detail.Pagination.ListExtensions</PackageId>
-    <Version>0.1.3</Version>
+    <Version>0.1.4</Version>
     <Authors>Garnet</Authors>
     <Company>Garnet</Company>
     <PackageProjectUrl>https://github.com/Abbas-b-b/Garnet.Pagination</PackageProjectUrl>

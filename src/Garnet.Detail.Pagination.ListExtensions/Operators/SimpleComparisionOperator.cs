@@ -34,12 +34,12 @@ internal class SimpleComparisionOperator : Operator
     public override IQueryable<T> Apply<T>(IQueryable<T> queryable, string expression)
     {
         var operands = GetOperands(expression);
-        ValidateOperability(typeof(T), operands.Item1);
+        var operandFieldType = GetRequiredTypeOfFieldChain(typeof(T), operands.Item1);
 
         var dynamicQueryOperatorSign = GetDynamicQueryOperatorSign();
 
         return queryable.Where($"{operands.Item1} {dynamicQueryOperatorSign} @0",
-            GetParameterObject(operands.Item2, operands.Item1.GetType()));
+            GetParameterObject(operands.Item2, operandFieldType));
     }
 
     private string GetDynamicQueryOperatorSign()

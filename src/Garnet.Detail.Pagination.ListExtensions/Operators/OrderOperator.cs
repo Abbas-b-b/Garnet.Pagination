@@ -21,7 +21,7 @@ internal class OrderOperator : Operator
     public override IQueryable<T> Apply<T>(IQueryable<T> queryable, string expression)
     {
         var operands = GetOperands(expression);
-        ValidateOperability(typeof(T), operands.Item1);
+        GetRequiredTypeOfFieldChain(typeof(T), operands.Item1);
 
         if (string.CompareOrdinal(operands.Item2,
                 ConfigProvider.PaginationOrderConfig.AscendingSign) == 0)

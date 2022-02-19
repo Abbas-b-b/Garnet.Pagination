@@ -66,17 +66,48 @@ internal abstract class Operator : IOperator
     }
 
     /// <summary>
-    /// To validate whether this operator can be applied to the <paramref name="fieldName"/> of <paramref name="typeToApplyOperatorOn"/>
+    /// Get type of field that this operator can be applied to the <paramref name="fieldNameChain"/> of <paramref name="typeToApplyOperatorOn"/> and throws exception of type <see cref="FieldNotFoundToOperateException"/> if not found
     /// </summary>
-    /// <param name="typeToApplyOperatorOn">Type with <paramref name="fieldName"/></param>
-    /// <param name="fieldName">in type <paramref name="typeToApplyOperatorOn"/> to apply this operator</param>
-    /// <exception cref="FieldNotFoundToOperateException">If <paramref name="fieldName"/> not exists in <paramref name="typeToApplyOperatorOn"/></exception>
-    protected static void ValidateOperability(Type typeToApplyOperatorOn, string fieldName)
+    /// <param name="typeToApplyOperatorOn">Type with <paramref name="fieldNameChain"/></param>
+    /// <param name="fieldNameChain">in type <paramref name="typeToApplyOperatorOn"/> to apply this operator</param>
+    /// <exception cref="FieldNotFoundToOperateException">If <paramref name="fieldNameChain"/> not exists in <paramref name="typeToApplyOperatorOn"/></exception>
+    protected static Type GetRequiredTypeOfFieldChain(Type typeToApplyOperatorOn, string fieldNameChain)
     {
-        if (!FieldNameChainExist(typeToApplyOperatorOn, fieldName))
+        var fieldType = GetTypeOfFieldChain(typeToApplyOperatorOn, fieldNameChain);
+
+        if (fieldType is null)
         {
-            throw new FieldNotFoundToOperateException(typeToApplyOperatorOn, fieldName);
+            throw new FieldNotFoundToOperateException(typeToApplyOperatorOn, fieldNameChain);
         }
+
+        return fieldType;
+    }
+
+    /// <summary>
+    /// To get type of the last field name separated by '.' exists in nested properties of type <paramref name="typeToApplyOperatorOn"/>
+    /// </summary>
+    /// <param name="typeToApplyOperatorOn">Type to start checking the chain <paramref name="fieldNameChain"/></param>
+    /// <param name="fieldNameChain">Fields chains to check against <paramref name="typeToApplyOperatorOn"/></param>
+    /// <returns>The type of last field in the <paramref name="fieldNameChain"/> on <paramref name="typeToApplyOperatorOn"/> or null if not found</returns>
+    private static Type GetTypeOfFieldChain(Type typeToApplyOperatorOn, string fieldNameChain)
+    {
+        foreach (var fieldName in fieldNameChain.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries))
+        {
+            var property = typeToApplyOperatorOn.GetProperties()
+                .FirstOrDefault(propertyInfo => propertyInfo.GetGetMethod().IsPublic
+                                                && string.Compare(propertyInfo.Name,
+                                                    fieldName,
+                                                    StringComparison.OrdinalIgnoreCase) == 0);
+
+            if (property is null)
+            {
+                return null;
+            }
+
+            typeToApplyOperatorOn = property.PropertyType;
+        }
+
+        return typeToApplyOperatorOn;
     }
 
     /// <summary>
@@ -96,44 +127,17 @@ internal abstract class Operator : IOperator
         {
             return resultDateTime;
         }
-        
+
         if (fieldType.IsEquivalentTo(typeof(TimeSpan)) && TimeSpan.TryParse(value, out var resultTimeSpan))
         {
             return resultTimeSpan;
         }
-        
+
         if (fieldType.IsEquivalentTo(typeof(Guid)) && Guid.TryParse(value, out var resultGuid))
         {
             return resultGuid;
         }
 
         return value;
-    }
-
-    /// <summary>
-    /// Checks whether all field name separated by '.' exists in nested properties of type <paramref name="type"/>
-    /// </summary>
-    /// <param name="type">Type to start checking the chain <paramref name="fieldNameChain"/></param>
-    /// <param name="fieldNameChain">Fields chains to check against <paramref name="type"/></param>
-    /// <returns></returns>
-    private static bool FieldNameChainExist(Type type, string fieldNameChain)
-    {
-        foreach (var fieldName in fieldNameChain.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries))
-        {
-            var property = type.GetProperties()
-                .FirstOrDefault(propertyInfo => propertyInfo.GetGetMethod().IsPublic
-                                                && string.Compare(propertyInfo.Name,
-                                                    fieldName,
-                                                    StringComparison.OrdinalIgnoreCase) == 0);
-
-            if (property is null)
-            {
-                return false;
-            }
-
-            type = property.PropertyType;
-        }
-
-        return true;
     }
 }

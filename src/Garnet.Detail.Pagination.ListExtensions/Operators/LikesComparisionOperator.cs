@@ -22,7 +22,7 @@ internal class LikesComparisionOperator : Operator
     public override IQueryable<T> Apply<T>(IQueryable<T> queryable, string expression)
     {
         var operands = GetOperands(expression);
-        ValidateOperability(typeof(T), operands.Item1);
+        var operandFieldType = GetRequiredTypeOfFieldChain(typeof(T), operands.Item1);
 
         var secondOperandValue = operands.Item2.Replace(
             ConfigProvider.PaginationFilterConfig.ZeroOrMoreCharactersWildCardSign, "");
@@ -49,6 +49,6 @@ internal class LikesComparisionOperator : Operator
                 ConfigProvider.PaginationFilterConfig.ZeroOrMoreCharactersWildCardSign)
         };
 
-        return queryable.Where(dynamicFilter, GetParameterObject(secondOperandValue, operands.Item1.GetType()));
+        return queryable.Where(dynamicFilter, GetParameterObject(secondOperandValue, operandFieldType));
     }
 }

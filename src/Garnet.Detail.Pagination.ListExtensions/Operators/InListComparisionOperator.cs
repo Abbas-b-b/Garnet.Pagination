@@ -21,12 +21,12 @@ internal class InListComparisionOperator : Operator
     public override IQueryable<T> Apply<T>(IQueryable<T> queryable, string expression)
     {
         var operands = GetOperands(expression);
-        ValidateOperability(typeof(T), operands.Item1);
+        var operandFieldType = GetRequiredTypeOfFieldChain(typeof(T), operands.Item1);
 
         var items = operands.Item2
             .Split(new[] { ConfigProvider.PaginationFilterConfig.InListSeparatorSign },
                 StringSplitOptions.RemoveEmptyEntries)
-            .Select(parameter => GetParameterObject(parameter.Trim(), operands.Item1.GetType()));
+            .Select(parameter => GetParameterObject(parameter.Trim(), operandFieldType));
 
         return queryable.Where($"@0.Contains({operands.Item1})", items.ToList());
     }
