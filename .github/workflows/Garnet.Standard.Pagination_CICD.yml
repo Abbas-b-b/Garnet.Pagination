@@ -1,0 +1,12 @@
+name: 'Garnet.Standard.Pagination_CICD'
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: step1
+      uses: Abbas-b-b/Garnet.Github.Actions/dotnet_checkout_pack_push@master
+      with:
+        nuget-api-key: 'xxx'
