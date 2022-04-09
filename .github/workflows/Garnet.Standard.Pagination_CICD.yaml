@@ -10,7 +10,7 @@ on:
     - '*.*.*'
 
 jobs:
-  build:
+  pack_push:
     runs-on: ubuntu-latest
     steps:
     - name: Pack and Push
