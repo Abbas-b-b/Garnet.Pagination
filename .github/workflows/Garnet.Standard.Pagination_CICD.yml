@@ -9,4 +9,4 @@ jobs:
     - name: step1
       uses: Abbas-b-b/Garnet.Github.Actions/dotnet_checkout_pack_push@master
       with:
-        nuget-api-key: 'xxx'
+        nuget-api-key: ${{ secrets.NUGET_API_KEY }}
