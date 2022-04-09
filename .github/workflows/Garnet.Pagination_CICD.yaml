@@ -2,8 +2,6 @@ name: 'Garnet.Pagination_CICD'
 
 on:
   push:
-    branches:    
-    - 'master'
     paths:
     - 'src/Garnet.Pagination/**'
     tags:
