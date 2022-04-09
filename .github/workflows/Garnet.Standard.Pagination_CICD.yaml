@@ -1,12 +1,19 @@
 name: 'Garnet.Standard.Pagination_CICD'
 
-on: [push]
+on:
+  push:
+    branches:    
+    - 'master'
+    paths:
+    - 'src/Garnet.Standard.Pagination/**'
+    tags:
+    - '*.*.*'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: pack and push
+    - name: Pack and Push
       uses: Abbas-b-b/Garnet.Github.Actions/dotnet_checkout_pack_push@master
       with:
         project-path: 'src/Garnet.Standard.Pagination/'

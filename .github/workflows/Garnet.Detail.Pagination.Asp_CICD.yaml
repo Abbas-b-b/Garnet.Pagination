@@ -1,0 +1,20 @@
+name: 'Garnet.Detail.Pagination.Asp_CICD'
+
+on:
+  push:
+    branches:    
+    - 'master'
+    paths:
+    - 'src/Garnet.Detail.Pagination.Asp/**'
+    tags:
+    - '*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Pack and Push
+      uses: Abbas-b-b/Garnet.Github.Actions/dotnet_checkout_pack_push@master
+      with:
+        project-path: 'src/Garnet.Detail.Pagination.Asp/'
+        nuget-api-key: ${{ secrets.NUGET_API_KEY }} 
