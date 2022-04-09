@@ -6,7 +6,6 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     
     <PackageId>Garnet.Pagination</PackageId>
-    <Version>0.1.2</Version>
     <Authors>Garnet</Authors>
     <Company>Garnet</Company>
     <PackageProjectUrl>https://github.com/Abbas-b-b/Garnet.Pagination</PackageProjectUrl>
@@ -33,6 +32,10 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+    <PackageReference Include="MinVer" Version="3.1.0">
+      <PrivateAssets>All</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
