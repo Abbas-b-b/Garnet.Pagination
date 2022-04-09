@@ -6,7 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: step1
-      uses: Abbas-b-b/Garnet.Github.Actions/dotnet_checkout_pack_push@master
+    - name: pack and push
+      uses: ../Garnet.Github.Actions/dotnet_checkout_pack_push@master
       with:
+        project-path: 'src/Garnet.Standard.Pagination/'
         nuget-api-key: ${{ secrets.NUGET_API_KEY }} 
