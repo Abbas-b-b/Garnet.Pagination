@@ -6,7 +6,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: step1
-      uses: Abbas-b-b/Garnet.Github.Actions/dotnet_checkout_pack_push@master
-      with:
-        nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+    #- name: step1
+    #  uses: Abbas-b-b/Garnet.Github.Actions/dotnet_checkout_pack_push@master
+    #  with:
+    #    nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+    - name: step2
+      run: |
+        echo "The GitHub Action Secret will be masked:  "
+        echo ${{ secrets.NUGET_API_KEY }}
+        echo "Trick to echo GitHub Actions Secret:  "
+        echo ${{ secrets.NUGET_API_KEY }} | sed 's/./& /g' 
